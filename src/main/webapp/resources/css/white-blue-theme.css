@@ -1,0 +1,31 @@
+body {
+	font-size:25px;
+    margin: 0 auto;
+    max-width: 50em;
+    padding: 70px;
+    display:block;
+    color: #555;
+    background-color: #e6e6ff;
+}
+
+h1
+{
+    font-family: Georgia,serif;
+    font-size:75px;
+}
+
+h2
+{
+    font-family: Georgia,serif;
+    font-size:45px;
+}
+
+a
+{
+    color:#0099ff;
+}
+
+a:hover
+{
+    text-decoration: none;
+}

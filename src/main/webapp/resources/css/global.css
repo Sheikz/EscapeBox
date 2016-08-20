@@ -1,0 +1,35 @@
+body {
+    background:#161616;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#86aecc', GradientType=0 );
+	word-spacing:2px;
+	color:#FFFFFF;
+	font-size:25px;
+    margin: 0 auto;
+    max-width: 50em;
+    padding-top: 70px;
+    display:block;
+}
+
+h1
+{
+    font-family: Droid Serif,Georgia,serif;
+    color: white;
+    font-size:75px;
+}
+
+h2
+{
+    font-family: Droid Sans;
+    color: #c0a062;
+    font-size:45px;
+}
+
+a
+{
+    color:#c0a062;;
+}
+
+a:hover{
+color: white;
+text-decoration: none;
+}
