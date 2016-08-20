@@ -18,7 +18,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     </servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/myapp-servlet.xml</param-value>
+      <param-value>WEB-INF/myapp-servlet.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

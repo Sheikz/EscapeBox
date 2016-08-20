@@ -1,5 +1,6 @@
 package com.escape.database;
 
+import com.escape.model.Room;
 import com.escape.model.Run;
 import com.escape.model.Scenario;
 import org.junit.Assert;
@@ -18,7 +19,7 @@ public class TestEscapeDatabase
     {
         Stack<Integer> idCreated = new Stack();
         Stack<Scenario> scenariosCreated = new Stack();
-        List<Scenario> result = EscapeDatabase.getScenarios();
+        List<Scenario> result = ScenarioDAO.getScenarios();
 
         Assert.assertEquals(0, result.size());
 
@@ -29,10 +30,10 @@ public class TestEscapeDatabase
 
         for (Scenario s : scenariosCreated)
         {
-            idCreated.add(EscapeDatabase.addScenario(s));
+            idCreated.add(ScenarioDAO.addScenario(s));
         }
 
-        result = EscapeDatabase.getScenarios();
+        result = ScenarioDAO.getScenarios();
         Assert.assertEquals(4, result.size());
 
         Assert.assertEquals("RoomTest135", result.get(0).getName());
@@ -40,10 +41,10 @@ public class TestEscapeDatabase
 
         for (int id : idCreated)
         {
-            EscapeDatabase.deleteScenario(id);
+            ScenarioDAO.deleteScenario(id);
         }
 
-        result = EscapeDatabase.getScenarios();
+        result = ScenarioDAO.getScenarios();
         Assert.assertEquals(0, result.size());
     }
 
@@ -51,15 +52,17 @@ public class TestEscapeDatabase
     public void testCreateRun()
     {
         Scenario scenario = new Scenario("testScenario", 5, 60);
-        Run r = new Run(scenario);
+        Room room = new Room("Room 1");
+        room.setScenario(scenario);
+        Run r = new Run(room);
 
-        int id = EscapeDatabase.addRun(r);
-        Run r2 = EscapeDatabase.getRun(id);
-        List<Run> result = EscapeDatabase.getRuns();
+        int id = RunDAO.addRun(r);
+        Run r2 = RunDAO.getRun(id);
+        List<Run> result = RunDAO.getRuns();
 
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals(scenario.getId(), r2.getScenario().getId());
-        Assert.assertEquals(scenario.getName(), r2.getScenario().getName());
-        Assert.assertEquals(scenario.getNumberOfPlayers(), r2.getScenario().getNumberOfPlayers());
+        Assert.assertEquals(scenario.getId(), r2.getRoom().getScenario().getId());
+        Assert.assertEquals(scenario.getName(), r2.getRoom().getScenario().getName());
+        Assert.assertEquals(scenario.getNumberOfPlayers(), r2.getRoom().getScenario().getNumberOfPlayers());
     }
 }

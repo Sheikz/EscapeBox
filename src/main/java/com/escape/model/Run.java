@@ -16,14 +16,14 @@ public class Run implements Serializable
     @GeneratedValue
     private int id;
     private Instant startTime;
-    private Scenario scenario;
+    private Room room;
 
     public Run(){};
 
-    public Run(Scenario scenario)
+    public Run(Room room)
     {
         this.startTime = Instant.now();
-        this.scenario = scenario;
+        this.room = room;
     }
 
     public int getId() {
@@ -42,11 +42,11 @@ public class Run implements Serializable
         this.startTime = startTime;
     }
 
-    public Scenario getScenario() {
-        return scenario;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setScenario(Scenario scenario) {
-        this.scenario = scenario;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }

@@ -16,15 +16,24 @@
 
 </head>
 
-<%@ include file="/WEB-INF/views/navigationBar.jsp" %>
-
 <body id="grad" ng-app="escapeBoxApp" ng-controller="roomAppController">
 
-<h2>Rooms Dashboard</h2>
+<%@ include file="/WEB-INF/views/navigationBar.jsp" %>
+
+<h2>Rooms Management</h2>
+
+<form class="form-inline">
+  <div class="form-group">
+    <label>Name</label>
+    <input ng-model="inputRoom.name"type="text" class="form-control" placeholder="">
+  </div>
+  <button ng-click="createRoom()" type="submit" class="btn btn-success">Create Room</button>
+</form>
 
 <h4>Room List</h4>
 <ul ng-repeat="room in rooms">
     <li><strong>{{room.name}}</strong>
+    <button ng-click="deleteRoom(room)" class="btn btn-danger">Delete Room</button>
     </li>
 </ul>
 

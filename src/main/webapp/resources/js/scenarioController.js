@@ -1,6 +1,6 @@
-var scenarioApp = angular.module('scenarioApp', []);
+var escapeBoxApp = angular.module('escapeBoxApp', []);
 
-scenarioApp.controller('scenarioAppController', function($scope, $http){
+escapeBoxApp.controller('scenarioAppController', function($scope, $http){
 
     $scope.scenarios = [];
     $scope.inputFormScenario = {};
@@ -52,7 +52,6 @@ scenarioApp.controller('scenarioAppController', function($scope, $http){
         }).error(function (data){
             console.log("Error while creating run for scenario["+scenario.name+"]");
         });
-
     }
     
     $scope.deleteScenario = function(scenario){

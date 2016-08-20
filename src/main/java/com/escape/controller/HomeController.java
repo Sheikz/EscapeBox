@@ -17,8 +17,20 @@ public class HomeController
     private static Logger logger = Logger.getLogger("HomeController");
 
     @RequestMapping(method = RequestMethod.GET)
-    public String sayHello(ModelMap model) {
+    public String home(ModelMap model) {
 
         return "home";
+    }
+
+    @RequestMapping(value="/scenarios", method = RequestMethod.GET)
+    public String scenarios(ModelMap model) {
+
+        return "scenarios";
+    }
+
+    @RequestMapping(value="/rooms", method = RequestMethod.GET)
+    public String rooms(ModelMap model) {
+
+        return "rooms";
     }
 }
