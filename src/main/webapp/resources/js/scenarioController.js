@@ -1,6 +1,5 @@
-var escapeBoxApp = angular.module('escapeBoxApp', []);
-
-escapeBoxApp.controller('scenarioAppController', function($scope, $http){
+angular.module('escapeBoxApp')
+.controller('scenarioAppController', function($scope, $http){
 
     $scope.scenarios = [];
     $scope.inputFormScenario = {};
@@ -16,7 +15,7 @@ escapeBoxApp.controller('scenarioAppController', function($scope, $http){
 	}
 
 	// Initialization
-        $scope.getScenarios();
+    $scope.getScenarios();
 
 
     $scope.createScenario = function(){

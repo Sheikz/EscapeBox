@@ -22,15 +22,7 @@
 
 <body id="grad" ng-app="escapeBoxApp" ng-controller="roomAppController">
 
-<h2>Rooms Dashboard</h2>
-
-<h4>Room List</h4>
-<ul ng-repeat="room in rooms">
-    <li><strong>{{room.name}}</strong> Scenario: {{room.scenario.name}}
-    </li>
-</ul>
-
-</div>
+<div ng-view
 
 </body>
 </html>

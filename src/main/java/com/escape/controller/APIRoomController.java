@@ -1,6 +1,7 @@
 package com.escape.controller;
 
 import com.escape.database.RoomDAO;
+import com.escape.database.ScenarioDAO;
 import com.escape.model.Room;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,12 @@ public class APIRoomController
     public @ResponseBody Room getRoom(@PathVariable int id)
     {
         return RoomDAO.getRoom(id);
+    }
+
+    @RequestMapping(value="associate/{roomId}/{scenarioId}", method = RequestMethod.PATCH)
+    public void associateRoom(@PathVariable int roomId, @PathVariable int scenarioId)
+    {
+        RoomDAO.getRoom(roomId).setScenario(ScenarioDAO.getScenario(scenarioId));
     }
 
     @ResponseBody

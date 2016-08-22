@@ -1,6 +1,5 @@
-var escapeBoxApp = angular.module('escapeBoxApp', []);
-
-escapeBoxApp.controller('roomAppController', function($scope, $http){
+angular.module('escapeBoxApp')
+.controller('roomAppController', function($scope, $http){
 
     $scope.rooms = [];
 
