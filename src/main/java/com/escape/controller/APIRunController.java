@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Sheikz on 8/17/2016.
  */
 @RestController
-@RequestMapping("/api/run/")
+@RequestMapping("/api/runs")
 public class APIRunController {
 
     private static final Logger logger = Logger.getLogger(APIRunController.class);

@@ -11,10 +11,16 @@ import java.util.List;
  * Created by Sheikz on 8/20/2016.
  */
 @RestController
-@RequestMapping("/api/room/")
+@RequestMapping("/api/rooms")
 public class APIRoomController
 {
-    @RequestMapping(value="{id}", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
+    public @ResponseBody List<Room> getRooms()
+    {
+        return RoomDAO.getRooms();
+    }
+
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public @ResponseBody Room getRoom(@PathVariable int id)
     {
         return RoomDAO.getRoom(id);
@@ -27,20 +33,14 @@ public class APIRoomController
     }
 
     @ResponseBody
-    @RequestMapping(value="create", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public void addRoom(@RequestBody Room room)
     {
         RoomDAO.addRoom(room);
     }
 
-    @RequestMapping(value="list", method = RequestMethod.GET)
-    public @ResponseBody List<Room> getRooms()
-    {
-        return RoomDAO.getRooms();
-    }
-
     @ResponseBody
-    @RequestMapping(value="delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
     public void deleteRoom(@PathVariable int id)
     {
         RoomDAO.deleteRoom(id);

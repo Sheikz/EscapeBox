@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Sheikz on 8/17/2016.
  */
 @RestController
-@RequestMapping("/api/scenario/")
+@RequestMapping("/api/scenarios/")
 public class APIScenarioController
 {
     private static Logger logger = Logger.getLogger(APIScenarioController.class);
