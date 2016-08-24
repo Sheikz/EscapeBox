@@ -3,21 +3,25 @@ angular.module('escapeBoxApp')
 
     $scope.rooms = [];
 
-	$scope.getRooms = function(){
+	$scope.refresh = function(){
         $scope.rooms = Room.query();
 	}
 
 	// Initialization
-        $scope.getRooms();
+        $scope.refresh();
 
     $scope.createRoom = function(){
         var room = new Room();
         room.name = $scope.inputRoom.name;
 
         room.$save().then(function(){
-            $scope.getRooms();
+            $scope.refresh();
             console.log("success");
         });
+    }
+
+    $scope.deleteRoom = function (room){
+        Room.delete({id:room.id}, $scope.refresh)
     }
 
 });

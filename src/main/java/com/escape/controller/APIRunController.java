@@ -1,15 +1,15 @@
 package com.escape.controller;
 
-import com.escape.database.RoomDAO;
-import com.escape.database.RunDAO;
-import com.escape.database.ScenarioDAO;
+import com.escape.database.*;
 import com.escape.model.Room;
 import com.escape.model.Run;
 import com.escape.model.Scenario;
 import org.jboss.logging.Logger;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -21,32 +21,41 @@ public class APIRunController {
 
     private static final Logger logger = Logger.getLogger(APIRunController.class);
 
+    @Resource
+    private RunRepository runRepository;
+
+    @Resource
+    private RoomRepository roomRepository;
+
     @ResponseBody
-    @RequestMapping(value="start/{roomId}", method = RequestMethod.PUT)
+    @RequestMapping(value="/start/{roomId}", method = RequestMethod.POST)
     public void startRun(@PathVariable int roomId)
     {
-        Room r = RoomDAO.getRoom(roomId);
+        Room r = roomRepository.findOne(roomId);
+        if (r == null)
+            return;
+
         Run run = new Run(r);
-        RunDAO.addRun(run);
+        runRepository.save(run);
     }
 
-    @RequestMapping(value="{id}", method = RequestMethod.GET)
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public @ResponseBody Run getRoom(@PathVariable int id)
     {
-        return RunDAO.getRun(id);
+        return runRepository.findOne(id);
     }
 
-    @RequestMapping(value="list", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     List<Run> getRooms()
     {
-        return RunDAO.getRuns();
+        return runRepository.findAll();
     }
 
     @ResponseBody
-    @RequestMapping(value="delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
     public void deleteRoom(@PathVariable int id)
     {
-        RunDAO.deleteRun(id);
+        runRepository.delete(id);
     }
 }

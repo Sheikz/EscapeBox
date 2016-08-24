@@ -1,39 +1,51 @@
 package com.escape.controller;
 
 import com.escape.database.ScenarioDAO;
+import com.escape.database.ScenarioRepository;
 import com.escape.model.Scenario;
 import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * Created by Sheikz on 8/17/2016.
  */
 @RestController
-@RequestMapping("/api/scenarios/")
+@RequestMapping("/api/scenarios")
 public class APIScenarioController
 {
     private static Logger logger = Logger.getLogger(APIScenarioController.class);
 
-    @RequestMapping(value="list", method = RequestMethod.GET)
+    @Resource
+    private ScenarioRepository scenarioRepository;
+
+    @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody List<Scenario> getScenarios()
     {
-        return ScenarioDAO.getScenarios();
+        return scenarioRepository.findAll();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public @ResponseBody Scenario getScenario(@PathVariable int id)
+    {
+        return scenarioRepository.findOne(id);
     }
 
     @ResponseBody
-    @RequestMapping(value="create", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public void createScenario(@RequestBody Scenario scenario)
     {
-    	ScenarioDAO.addScenario(scenario);
+    	scenarioRepository.save(scenario);
     }
 
     @ResponseBody
-    @RequestMapping(value="delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteScenario(@PathVariable int id)
     {
-        ScenarioDAO.deleteScenario(id);
+        scenarioRepository.delete(id);
     }
 
 }

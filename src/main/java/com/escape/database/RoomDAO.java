@@ -3,6 +3,7 @@ package com.escape.database;
 import com.escape.model.Room;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 public class RoomDAO
 {
     private static final Logger logger = Logger.getLogger("RoomDAO");
+
 
     public static int addRoom(Room r)
     {
@@ -40,6 +42,7 @@ public class RoomDAO
 
         result = session.createQuery("from Room").list();
         session.close();
+
         return result;
     }
 

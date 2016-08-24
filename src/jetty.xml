@@ -1,0 +1,7 @@
+<Configure id="mywebapp" class="org.eclipse.jetty.webapp.WebAppContext">
+    <Set name="classLoader">
+        <New class="com.escape.config.WebAppInitializer">
+            <Arg><Ref refid="mywebapp"/></Arg>
+        </New>
+    </Set>
+</Configure>

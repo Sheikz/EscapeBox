@@ -8,16 +8,20 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.util.logging.Logger;
+
 /**
  * Created by Sheikz on 8/20/2016.
  */
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = {"com.escape.controller"})
+@ComponentScan(basePackages = {"com.escape"})
 public class EscapeBoxConfig extends WebMvcConfigurerAdapter
 {
+    private static Logger logger = Logger.getLogger("EscapeBoxConfig");
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 

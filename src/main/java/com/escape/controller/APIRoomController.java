@@ -1,10 +1,14 @@
 package com.escape.controller;
 
 import com.escape.database.RoomDAO;
+import com.escape.database.RoomRepository;
 import com.escape.database.ScenarioDAO;
 import com.escape.model.Room;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,16 +18,21 @@ import java.util.List;
 @RequestMapping("/api/rooms")
 public class APIRoomController
 {
+    @Resource
+    private RoomRepository roomRepository;
+
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody List<Room> getRooms()
+    public @ResponseBody
+    List<Room> getRooms()
     {
-        return RoomDAO.getRooms();
+        return roomRepository.findAll();
+        //return RoomDAO.getRooms();
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public @ResponseBody Room getRoom(@PathVariable int id)
     {
-        return RoomDAO.getRoom(id);
+        return roomRepository.findOne(id);
     }
 
     @RequestMapping(value="associate/{roomId}/{scenarioId}", method = RequestMethod.PATCH)
@@ -43,7 +52,7 @@ public class APIRoomController
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
     public void deleteRoom(@PathVariable int id)
     {
-        RoomDAO.deleteRoom(id);
+        roomRepository.delete(id);
     }
 
 }
