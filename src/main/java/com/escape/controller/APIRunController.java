@@ -1,15 +1,13 @@
 package com.escape.controller;
 
-import com.escape.database.*;
-import com.escape.model.Room;
+import com.escape.exception.RunNotFound;
 import com.escape.model.Run;
-import com.escape.model.Scenario;
+import com.escape.service.RunService;
 import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -21,41 +19,26 @@ public class APIRunController {
 
     private static final Logger logger = Logger.getLogger(APIRunController.class);
 
-    @Resource
-    private RunRepository runRepository;
+    @Autowired
+    RunService runService;
 
-    @Resource
-    private RoomRepository roomRepository;
-
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public
     @ResponseBody
-    @RequestMapping(value="/start/{roomId}", method = RequestMethod.POST)
-    public void startRun(@PathVariable int roomId)
-    {
-        Room r = roomRepository.findOne(roomId);
-        if (r == null)
-            return;
-
-        Run run = new Run(r);
-        runRepository.save(run);
-    }
-
-    @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public @ResponseBody Run getRoom(@PathVariable int id)
-    {
-        return runRepository.findOne(id);
+    Run getRoom(@PathVariable int id) throws RunNotFound {
+        return runService.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody
-    List<Run> getRooms()
-    {
-        return runRepository.findAll();
+    public
+    @ResponseBody
+    List<Run> getRooms() {
+        return runService.findAll();
     }
 
     @ResponseBody
-    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-    public void deleteRoom(@PathVariable int id)
-    {
-        runRepository.delete(id);
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteRoom(@PathVariable int id) throws RunNotFound {
+        runService.delete(id);
     }
 }

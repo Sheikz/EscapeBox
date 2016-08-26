@@ -12,8 +12,7 @@ import java.util.logging.Logger;
  */
 @Controller
 @RequestMapping("/")
-public class HomeController
-{
+public class HomeController {
     private static Logger logger = Logger.getLogger("HomeController");
 
     @RequestMapping(method = RequestMethod.GET)
@@ -22,13 +21,13 @@ public class HomeController
         return "home";
     }
 
-    @RequestMapping(value="/scenarios", method = RequestMethod.GET)
+    @RequestMapping(value = "/scenarios", method = RequestMethod.GET)
     public String scenarios(ModelMap model) {
 
         return "scenarios";
     }
 
-    @RequestMapping(value="/rooms", method = RequestMethod.GET)
+    @RequestMapping(value = "/rooms", method = RequestMethod.GET)
     public String rooms(ModelMap model) {
 
         return "rooms";

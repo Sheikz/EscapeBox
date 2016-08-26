@@ -13,6 +13,7 @@
 <script src="resources/js/escapeBoxApp.js"></script>
 <script src="resources/js/controllers/room.js"></script>
 <script src="resources/js/services/room.js"></script>
+<script src="resources/js/services/scenario.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/font-awesome-4.6.3/css/font-awesome.min.css" type="text/css" />
@@ -37,6 +38,11 @@
 <h4>Room List</h4>
 <ul ng-repeat="room in rooms">
     <li><strong>{{room.name}}</strong>
+    Current scenario: {{room.scenario.name}}
+    Set Scenario: 
+    <select>
+    	<option ng-repeat="scenario in scenarios">{{scenario.name}}</option>
+    </select>
     <button ng-click="deleteRoom(room)" class="btn btn-danger">Delete Room</button>
     </li>
 </ul>

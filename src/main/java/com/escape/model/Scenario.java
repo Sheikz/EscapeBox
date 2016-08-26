@@ -1,14 +1,15 @@
 package com.escape.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.time.Duration;
 
 /**
  * Created by Sheikz on 8/15/2016.
  */
 @Entity
-public class Scenario implements Serializable{
+public class Scenario implements Serializable {
 
     @Id
     @GeneratedValue
@@ -16,8 +17,10 @@ public class Scenario implements Serializable{
     private String name;
     private int numberOfPlayers;
     private int duration;
+    private byte[] image;
 
-    public Scenario(){}
+    public Scenario() {
+    }
 
     public Scenario(String name, int numberOfPlayers, int duration) {
         this.name = name;
@@ -55,5 +58,13 @@ public class Scenario implements Serializable{
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

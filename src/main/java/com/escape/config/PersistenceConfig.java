@@ -22,7 +22,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("com.escape.database")
+@EnableJpaRepositories("com.escape.dao")
 public class PersistenceConfig extends WebMvcConfigurerAdapter{
 
     @Bean

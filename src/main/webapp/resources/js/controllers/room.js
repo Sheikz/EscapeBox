@@ -1,10 +1,12 @@
 angular.module('escapeBoxApp')
-.controller('roomAppController', function($scope, Room){
+.controller('roomAppController', function($scope, Room, Scenario){
 
     $scope.rooms = [];
+    $scope.scenarios = [];
 
 	$scope.refresh = function(){
         $scope.rooms = Room.query();
+        $scope.scenarios = Scenario.query();
 	}
 
 	// Initialization

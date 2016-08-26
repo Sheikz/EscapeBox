@@ -12,6 +12,7 @@
 
 <script src="resources/js/escapeBoxApp.js"></script>
 <script src="resources/js/controllers/scenario.js"></script>
+<script src="resources/js/services/scenario.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/font-awesome-4.6.3/css/font-awesome.min.css" type="text/css" />

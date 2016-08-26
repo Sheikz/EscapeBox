@@ -1,14 +1,14 @@
 package com.escape.controller;
 
-import com.escape.database.RoomDAO;
-import com.escape.database.RoomRepository;
-import com.escape.database.ScenarioDAO;
+import com.escape.exception.RoomNotFound;
+import com.escape.exception.ScenarioNotFound;
 import com.escape.model.Room;
+import com.escape.model.Run;
+import com.escape.service.RoomService;
+import com.escape.service.RunService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,43 +16,49 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/rooms")
-public class APIRoomController
-{
-    @Resource
-    private RoomRepository roomRepository;
+public class APIRoomController {
+    @Autowired
+    RoomService roomService;
+
+    @Autowired
+    RunService runService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody
-    List<Room> getRooms()
-    {
-        return roomRepository.findAll();
-        //return RoomDAO.getRooms();
+    public
+    @ResponseBody
+    List<Room> getRooms() {
+        return roomService.findAll();
     }
 
-    @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public @ResponseBody Room getRoom(@PathVariable int id)
-    {
-        return roomRepository.findOne(id);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Room getRoom(@PathVariable int id) throws RoomNotFound {
+        return roomService.findById(id);
     }
 
-    @RequestMapping(value="associate/{roomId}/{scenarioId}", method = RequestMethod.PATCH)
-    public void associateRoom(@PathVariable int roomId, @PathVariable int scenarioId)
-    {
-        RoomDAO.getRoom(roomId).setScenario(ScenarioDAO.getScenario(scenarioId));
+    @RequestMapping(value = "/{id}/start", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Run startRun(@PathVariable int id) throws RoomNotFound {
+        return runService.start(id);
+    }
+
+    @RequestMapping(value = "/{roomId}/associate/{scenarioId}", method = RequestMethod.POST)
+    public void associateRoom(@PathVariable int roomId, @PathVariable int scenarioId) throws RoomNotFound, ScenarioNotFound {
+        roomService.associate(roomId, scenarioId);
     }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST)
-    public void addRoom(@RequestBody Room room)
-    {
-        RoomDAO.addRoom(room);
+    public void addRoom(@RequestBody Room room) {
+        roomService.create(room);
     }
 
     @ResponseBody
-    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-    public void deleteRoom(@PathVariable int id)
-    {
-        roomRepository.delete(id);
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteRoom(@PathVariable int id) throws RoomNotFound {
+        roomService.delete(id);
     }
 
 }
