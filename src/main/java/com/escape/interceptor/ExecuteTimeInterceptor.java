@@ -26,6 +26,6 @@ public class ExecuteTimeInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
         long executeTime = System.currentTimeMillis() - (long)request.getAttribute("startTime");
-        logger.info("Request: ["+request.getRequestURL()+"] took "+executeTime+"ms");
+        //logger.info("Request: ["+request.getRequestURL()+"] took "+executeTime+"ms");
     }
 }

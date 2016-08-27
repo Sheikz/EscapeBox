@@ -3,6 +3,7 @@ package com.escape.service;
 import com.escape.dao.ScenarioRepository;
 import com.escape.exception.ScenarioNotFound;
 import com.escape.model.Scenario;
+import com.escape.model.Task;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -47,5 +48,12 @@ public class ScenarioServiceImpl implements ScenarioService {
         Scenario existing = findById(s.getId());
         scenarioRepository.save(s);
         return s;
+    }
+
+    @Override
+    public void addTask(int id, Task t) throws ScenarioNotFound {
+        Scenario s = findById(id);
+        s.getTasks().add(t);
+        update(s);
     }
 }

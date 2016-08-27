@@ -3,6 +3,7 @@ package com.escape.service;
 import com.escape.dao.RunRepository;
 import com.escape.exception.RoomNotFound;
 import com.escape.exception.RunNotFound;
+import com.escape.exception.ScenarioNotDefined;
 import com.escape.model.Room;
 import com.escape.model.Run;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class RunServiceImpl implements RunService {
         return r;
     }
 
+    @Override
+    public Run create(Run run) {
+        return runRepository.save(run);
+    }
+
     /**
      * Start a run with a specified roomId
      *
@@ -44,8 +50,10 @@ public class RunServiceImpl implements RunService {
      * @throws RoomNotFound
      */
     @Override
-    public Run start(int roomId) throws RoomNotFound {
+    public Run start(int roomId) throws RoomNotFound, ScenarioNotDefined {
         Room r = roomService.findById(roomId);
+        if (r.getScenario() == null)
+            throw new ScenarioNotDefined("Room id "+roomId+" cannot be started because it has no scenario defined");
         Run run = new Run(r);
         runRepository.save(run);
         return run;

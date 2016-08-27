@@ -17,6 +17,7 @@ public class Run implements Serializable
     private int id;
     private Instant startTime;
     private Room room;
+    private String hint;
 
     public Run(){};
 
@@ -48,5 +49,13 @@ public class Run implements Serializable
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public String getHint() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
     }
 }

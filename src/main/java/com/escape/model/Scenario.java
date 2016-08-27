@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sheikz on 8/15/2016.
@@ -16,13 +19,17 @@ public class Scenario implements Serializable {
     private int id;
     private String name;
     private int numberOfPlayers;
+    private ArrayList<Task> tasks;
+
+    // Duration in minutes
     private int duration;
-    private byte[] image;
 
     public Scenario() {
+        tasks = new ArrayList<>();
     }
 
     public Scenario(String name, int numberOfPlayers, int duration) {
+        this.tasks = new ArrayList<>();
         this.name = name;
         this.numberOfPlayers = numberOfPlayers;
         this.duration = duration;
@@ -60,11 +67,11 @@ public class Scenario implements Serializable {
         this.duration = duration;
     }
 
-    public byte[] getImage() {
-        return image;
+    public List<Task> getTasks() {
+        return tasks;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 }
