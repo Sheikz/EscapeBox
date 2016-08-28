@@ -1,5 +1,6 @@
 package com.escape.controller;
 
+import com.escape.exception.RunForbiddenAction;
 import com.escape.exception.RunNotFound;
 import com.escape.model.Run;
 import com.escape.service.RunService;
@@ -25,20 +26,41 @@ public class APIRunController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public
     @ResponseBody
-    Run getRoom(@PathVariable int id) throws RunNotFound {
+    Run getRun(@PathVariable int id) throws RunNotFound {
         return runService.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Run> getRooms() {
+    List<Run> getRuns() {
         return runService.findAll();
+    }
+
+    @RequestMapping(value="/{id}/pause", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    void pauseRun(@PathVariable int id) throws RunForbiddenAction, RunNotFound {
+        runService.pause(id);
+    }
+
+    @RequestMapping(value="/{id}/resume", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    void resumeRun(@PathVariable int id) throws RunNotFound, RunForbiddenAction {
+        runService.resume(id);
+    }
+
+    @RequestMapping(value="/{id}/close", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    void closeRun(@PathVariable int id) throws RunNotFound {
+        runService.close(id);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteRoom(@PathVariable int id) throws RunNotFound {
+    public void deleteRun(@PathVariable int id) throws RunNotFound {
         runService.delete(id);
     }
 }

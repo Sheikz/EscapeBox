@@ -1,5 +1,5 @@
 angular.module('escapeBoxApp')
-.controller('scenarioAppController', function($scope, Scenario){
+.controller('scenarioController', function($scope, Scenario){
 
     $scope.scenarios = [];
     $scope.inputFormScenario = {};

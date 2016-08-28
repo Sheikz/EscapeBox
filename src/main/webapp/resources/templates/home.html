@@ -1,0 +1,21 @@
+<h2>Dashboard</h2>
+
+<div class="panel panel-primary" ng-repeat="room in rooms">
+    <div class="panel-heading">
+        {{room.name}}
+    </div>
+    <div class="panel-content">
+        <div ng-show="room.scenario">
+            Current scenario: <strong>{{room.scenario.name}}</strong>
+        </div>
+        <div ng-hide="room.scenario">
+            No scenario set
+        </div>
+
+        	Run:{{room.runId}}
+        <a href="#/run/">Link to run</a>
+        
+        <a ng-disabled="!room.scenario" ng-click="startRun(room)" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-play"></span> Start Run</a>
+
+    </div>
+</div>

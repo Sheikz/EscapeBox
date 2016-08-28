@@ -1,9 +1,6 @@
 package com.escape.controller;
 
-import com.escape.exception.RoomNotFound;
-import com.escape.exception.RunNotFound;
-import com.escape.exception.ScenarioNotDefined;
-import com.escape.exception.ScenarioNotFound;
+import com.escape.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -33,6 +30,11 @@ public class GlobalExceptionController {
     @ExceptionHandler(ScenarioNotDefined.class)
     public ResponseEntity<String> scenarioNotDefined(ScenarioNotDefined e){
         return new ResponseEntity<String>("Scenario not defined: "+e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RunForbiddenAction.class)
+    public ResponseEntity<String> runForbiddenAction(RunForbiddenAction e){
+        return new ResponseEntity<String>("Forbidden action: "+e.getMessage(), HttpStatus.FORBIDDEN);
     }
 
 }

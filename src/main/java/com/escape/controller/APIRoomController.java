@@ -1,8 +1,6 @@
 package com.escape.controller;
 
-import com.escape.exception.RoomNotFound;
-import com.escape.exception.ScenarioNotDefined;
-import com.escape.exception.ScenarioNotFound;
+import com.escape.exception.*;
 import com.escape.model.Room;
 import com.escape.model.Run;
 import com.escape.service.RoomService;
@@ -41,7 +39,7 @@ public class APIRoomController {
     @RequestMapping(value = "/{id}/start", method = RequestMethod.POST)
     public
     @ResponseBody
-    Run startRun(@PathVariable int id) throws RoomNotFound, ScenarioNotDefined {
+    Run startRun(@PathVariable int id) throws RoomNotFound, ScenarioNotDefined, RunForbiddenAction, RunNotFound {
         return runService.start(id);
     }
 

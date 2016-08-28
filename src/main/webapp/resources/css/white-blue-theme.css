@@ -1,6 +1,4 @@
 body {
-	font-size:25px;
-    margin: 0 auto;
     max-width: 50em;
     padding: 70px;
     display:block;
@@ -28,4 +26,9 @@ a
 a:hover
 {
     text-decoration: none;
+}
+
+.panel-content
+{
+    padding:10px;
 }

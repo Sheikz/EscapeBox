@@ -1,6 +1,7 @@
 package com.escape.service;
 
 import com.escape.exception.RoomNotFound;
+import com.escape.exception.RunForbiddenAction;
 import com.escape.exception.RunNotFound;
 import com.escape.exception.ScenarioNotDefined;
 import com.escape.model.Run;
@@ -18,7 +19,13 @@ public interface RunService {
 
     Run create(Run run);
 
-    Run start(int roomId) throws RoomNotFound, ScenarioNotDefined;
+    Run start(int roomId) throws RoomNotFound, ScenarioNotDefined, RunNotFound, RunForbiddenAction;
+
+    Run pause(int runId) throws RunNotFound, RunForbiddenAction;
+
+    Run resume(int runId) throws RunForbiddenAction, RunNotFound;
+
+    void close(int runId) throws RunNotFound;
 
     void delete(int id) throws RunNotFound;
 

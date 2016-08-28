@@ -18,18 +18,6 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String home(ModelMap model) {
 
-        return "home";
-    }
-
-    @RequestMapping(value = "/scenarios", method = RequestMethod.GET)
-    public String scenarios(ModelMap model) {
-
-        return "scenarios";
-    }
-
-    @RequestMapping(value = "/rooms", method = RequestMethod.GET)
-    public String rooms(ModelMap model) {
-
-        return "rooms";
+        return "index";
     }
 }

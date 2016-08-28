@@ -12,19 +12,28 @@ import java.time.Instant;
 @Entity
 public class Run implements Serializable
 {
+    public enum State{
+        ACTIVE, PAUSED, FINISHED
+    };
+
     @Id
     @GeneratedValue
     private int id;
     private Instant startTime;
+    private Instant endTime;
     private Room room;
     private String hint;
+    private State state;
 
-    public Run(){};
+    public Run(){
+        state = state.ACTIVE;
+    };
 
     public Run(Room room)
     {
         this.startTime = Instant.now();
         this.room = room;
+        state = State.ACTIVE;
     }
 
     public int getId() {
@@ -43,6 +52,14 @@ public class Run implements Serializable
         this.startTime = startTime;
     }
 
+    public Instant getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Instant endTime) {
+        this.endTime = endTime;
+    }
+
     public Room getRoom() {
         return room;
     }
@@ -57,5 +74,13 @@ public class Run implements Serializable
 
     public void setHint(String hint) {
         this.hint = hint;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }

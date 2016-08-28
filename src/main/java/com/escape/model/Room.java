@@ -17,6 +17,7 @@ public class Room implements Serializable{
 
     private String name;
     private Scenario scenario;
+    private int runId;
 
     public Room() {}
 
@@ -47,5 +48,13 @@ public class Room implements Serializable{
 
     public void setScenario(Scenario scenario) {
         this.scenario = scenario;
+    }
+
+    public int getRunId() {
+        return runId;
+    }
+
+    public void setRunId(int runId) {
+        this.runId = runId;
     }
 }
