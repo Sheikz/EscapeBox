@@ -2,6 +2,8 @@ package com.escape.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Created by Sheikz on 8/24/2016.
  */

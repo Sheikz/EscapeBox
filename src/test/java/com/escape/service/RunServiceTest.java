@@ -74,7 +74,7 @@ public class RunServiceTest {
         }
     }
 
-    @Test(expected = RunForbiddenAction.class)
+    @Test
     public void pauseResumeRun() throws RunNotFound {
         Run r = new Run();
         r.setState(Run.State.FINISHED);
